@@ -8,6 +8,11 @@ public class ActionController {
     private Scanner scanner;
     private ActionService actionService;
 
+    public ActionController(Scanner scanner, ActionService actionService) {
+        this.scanner = scanner;
+        this.actionService = actionService;
+    }
+
     public void chooseAction () {
         while (true) {
             String actionSelection = scanner.nextLine();
@@ -20,7 +25,7 @@ public class ActionController {
         }
     }
     private void registration () {
-        System.out.println("Create login x pass: ");
+        System.out.println("Create new login x pass: ");
         String login = scanner.nextLine();
         String password = scanner.nextLine();
         boolean isRegistered = actionService.registered(login, password);
@@ -44,3 +49,4 @@ public class ActionController {
 
     }
 }
+// в каждом сервисе сделать конструктор который тзаполняет все параметры
