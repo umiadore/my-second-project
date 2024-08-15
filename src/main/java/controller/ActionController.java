@@ -1,12 +1,12 @@
 package controller;
 
+import service.ActionService;
+
 import java.util.Scanner;
 
 public class ActionController {
-    //in order to interact with ENUM, we need a scanner
     private Scanner scanner;
-
-
+    private ActionService actionService;
 
     public void chooseAction () {
         while (true) {
@@ -20,9 +20,27 @@ public class ActionController {
         }
     }
     private void registration () {
-        // later on ill add the logic
+        System.out.println("Create login x pass: ");
+        String login = scanner.nextLine();
+        String password = scanner.nextLine();
+        boolean isRegistered = actionService.registered(login, password);
+        if (isRegistered)  {
+            System.out.println("Your registration has been proceed successfully!");
+        } else  {
+            System.out.println("Try again!");
+        }
+
     }
     private void authorization () {
-        // later on
+        System.out.println("Input your login x pass: ");
+        String login = scanner.nextLine();
+        String password = scanner.nextLine();
+        boolean isAuthorized = actionService.authorized(login, password);
+        if (isAuthorized)  {
+            System.out.println("You are logged in!");
+        } else  {
+            System.out.println("Try again!");
+        }
+
     }
 }
