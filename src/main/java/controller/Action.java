@@ -1,5 +1,5 @@
 package controller;
-// - Actions (ENUM: Registration, Autorisation)
+// - Actions (ENUM: Registration, Authorization)
 public enum Action {
     REGISTRATION,
     AUTHORIZATION;
