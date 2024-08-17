@@ -9,7 +9,7 @@ public class ActionController {
     private ActionService actionService;
 
     public ActionController(Scanner scanner, ActionService actionService) {
-        this.scanner = scanner;
+        this.scanner = new Scanner(System.in);
         this.actionService = actionService;
     }
 
