@@ -8,6 +8,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Log in or Sign in:");
 
+        ActionController actionController = new ActionController();
+        actionController.chooseAction();
+
 
     }
 }
