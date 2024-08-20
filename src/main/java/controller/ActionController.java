@@ -1,17 +1,19 @@
 package controller;
 
-import entity.User;
-import service.ActionService;
+import service.AuthorizationService;
+import service.RegistrationService;
 
 import java.util.Scanner;
 
 public class ActionController {
     private Scanner scanner;
-    private ActionService actionService;
+    private RegistrationService registrationService;
+    private AuthorizationService authorizationService;
 
-    public ActionController() {
-        this.scanner = new Scanner(System.in);
-        this.actionService = actionService;
+    public ActionController(Scanner scanner, RegistrationService registrationService, AuthorizationService authorizationService) {
+        this.scanner = scanner;
+        this.registrationService = registrationService;
+        this.authorizationService = authorizationService;
     }
 
     public void chooseAction () {
@@ -22,8 +24,8 @@ public class ActionController {
             switch (action) {
                 case REGISTRATION -> registration () ;
                 case AUTHORIZATION -> authorization ();
-                case RECOVER_PASSWORD ->recoverPass ();
-                case EXIT -> exit ();
+                // case RECOVER_PASSWORD ->recoverPass ();
+               // case EXIT -> exit ();
             }
         }
     }
@@ -31,7 +33,7 @@ public class ActionController {
         System.out.println("Create new login x pass: ");
         String login = scanner.nextLine();
         String password = scanner.nextLine();
-        boolean isRegistered = actionService.registered(login, password);
+        boolean isRegistered = registrationService.registered(login, password);
         if (isRegistered)  {
             System.out.println("Your registration has been proceed successfully!");
         } else  {
@@ -42,7 +44,7 @@ public class ActionController {
         System.out.println("Input your login x pass: ");
         String login = scanner.nextLine();
         String password = scanner.nextLine();
-        boolean isAuthorized = actionService.authorized(login, password);
+        boolean isAuthorized = authorizationService.authorizedUser(login,password);
         if (isAuthorized)  {
             System.out.println("You are logged in!");
         } else  {
@@ -50,7 +52,7 @@ public class ActionController {
         }
 
     }
-
+/*
     private void recoverPass () {
 
     }
@@ -58,5 +60,7 @@ public class ActionController {
     private void exit () {
 
     }
+
+ */
 }
 // в каждом сервисе сделать конструктор который тзаполняет все параметры
