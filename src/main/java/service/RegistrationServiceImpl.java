@@ -6,13 +6,15 @@ import repository.DataRepository;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class ActionServiceImpl implements ActionService{
+public class RegistrationServiceImpl implements RegistrationService {
 
     private final  EncryptionService encryptionService;
     private final DataRepository dataRepository;
+
+
     private final Scanner scanner;
 
-    public ActionServiceImpl(EncryptionService encryptionService, DataRepository dataRepository, Scanner scanner) {
+    public RegistrationServiceImpl(EncryptionService encryptionService, DataRepository dataRepository, Scanner scanner) {
         this.encryptionService = encryptionService;
         this.dataRepository = dataRepository;
         this.scanner = scanner;
@@ -25,19 +27,12 @@ public class ActionServiceImpl implements ActionService{
             return true;
         }
 
+        String encryptedPass = encryptionService.hiddenPass(password);
+        User user = new User(login, encryptedPass);
+        dataRepository.saveUser(user);
         return false;
     }
 
-    @Override
-    public boolean authorized(String login, String password) {
-
-        return false;
-    }
-
-    @Override
-    public boolean recoverPass(String login, String password) {
-        return false;
-    }
 
     // Для проверки пароля
     private boolean isValidPassword(String password) {
