@@ -23,14 +23,14 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     @Override
     public boolean registered(String login, String password) {
-        if (isValidPassword(password)) {
-            return true;
+        if (!isValidPassword(password)) {
+            return false;
         }
 
-        String encryptedPass = encryptionService.hiddenPass(password);
+        String encryptedPass = encryptionService.encryptedPass(password);
         User user = new User(login, encryptedPass);
         dataRepository.saveUser(user);
-        return false;
+        return true;
     }
 
 

@@ -5,9 +5,15 @@ import java.security.NoSuchAlgorithmException;
 
 public class EncryptionServiceImpl implements EncryptionService {
 
+    private AuthorizationService authorizationService;
+
+    public EncryptionServiceImpl(AuthorizationService authorizationService) {
+        this.authorizationService = authorizationService;
+    }
+
     // we use any type of encryption
     @Override
-    public String hiddenPass(String password) {
+    public String encryptedPass(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             byte[] hash = md.digest(password.getBytes());

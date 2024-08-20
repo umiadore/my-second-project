@@ -10,9 +10,11 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         DataRepository dataRepository = new DataRepositoryImpl();
-        EncryptionService encryptionService = new EncryptionServiceImpl();
-        RegistrationService registrationService = new RegistrationServiceImpl(encryptionService,dataRepository,scanner );
         AuthorizationService authorizationService = new AuthorizationServiceImpl(dataRepository);
+
+        EncryptionService encryptionService = new EncryptionServiceImpl( authorizationService);
+        RegistrationService registrationService = new RegistrationServiceImpl(encryptionService, dataRepository, scanner);
+
 
 
         System.out.println("Log in or Sign in:");

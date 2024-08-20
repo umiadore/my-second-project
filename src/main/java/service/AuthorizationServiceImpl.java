@@ -11,6 +11,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
         this.dataRepository = dataRepository;
     }
 
+    //encrypt the pass
 
     @Override
     public boolean authorizedUser(String login, String password) {
