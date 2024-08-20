@@ -1,5 +1,6 @@
 package controller;
 
+import entity.User;
 import service.ActionService;
 
 import java.util.Scanner;
@@ -8,7 +9,7 @@ public class ActionController {
     private Scanner scanner;
     private ActionService actionService;
 
-    public ActionController(Scanner scanner, ActionService actionService) {
+    public ActionController() {
         this.scanner = new Scanner(System.in);
         this.actionService = actionService;
     }
@@ -21,6 +22,8 @@ public class ActionController {
             switch (action) {
                 case REGISTRATION -> registration () ;
                 case AUTHORIZATION -> authorization ();
+                case RECOVER_PASSWORD ->recoverPass ();
+                case EXIT -> exit ();
             }
         }
     }
@@ -34,7 +37,6 @@ public class ActionController {
         } else  {
             System.out.println("Try again!");
         }
-
     }
     private void authorization () {
         System.out.println("Input your login x pass: ");
@@ -46,6 +48,14 @@ public class ActionController {
         } else  {
             System.out.println("Try again!");
         }
+
+    }
+
+    private void recoverPass () {
+
+    }
+
+    private void exit () {
 
     }
 }

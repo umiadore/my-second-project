@@ -1,6 +1,10 @@
 package controller;
 public enum Action {
     REGISTRATION,
-    AUTHORIZATION
+    AUTHORIZATION,
+
+    RECOVER_PASSWORD,
+
+    EXIT
 
 }

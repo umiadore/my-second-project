@@ -10,4 +10,13 @@ public class DataRepositoryImpl implements DataRepository{
 
     private Map<String, User> data = new HashMap<>();
 
+    @Override
+    public void saveUser(User user) {
+
+    }
+
+    @Override
+    public User findUserByUsername(String username) {
+        return null;
+    }
 }
