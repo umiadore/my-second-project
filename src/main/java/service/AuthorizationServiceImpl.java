@@ -10,12 +10,12 @@ public class AuthorizationServiceImpl implements AuthorizationService {
     public AuthorizationServiceImpl(DataRepository dataRepository) {
         this.dataRepository = dataRepository;
     }
-
     //encrypt the pass
 
     @Override
     public boolean authorizedUser(String login, String password) {
-            User user = dataRepository.findUserByUsername(login);
+        User user = dataRepository.findUserByUsername(login);
+        //EncryptionServiceImpl encryptionService = new EncryptionServiceImpl(this::authorizedUser);
             boolean authorized = (user !=null && user.getPassword().equals(password));
             if (authorized) {
                 System.out.println("[SECURITY] User " + login + " successfully verified.");
@@ -23,5 +23,6 @@ public class AuthorizationServiceImpl implements AuthorizationService {
                 System.out.println("[ERROR] Verification failed for user " + login);
             }
             return authorized;
-        }
+    }
+
     }
