@@ -15,13 +15,10 @@ public class Main {
         EncryptionService encryptionService = new EncryptionServiceImpl( authorizationService);
         RegistrationService registrationService = new RegistrationServiceImpl(encryptionService, dataRepository, scanner);
 
-
-
         System.out.println("Log in or Sign in:");
 
         ActionController actionController = new ActionController(scanner, registrationService, authorizationService);
         actionController.chooseAction();
-
 
     }
 }
