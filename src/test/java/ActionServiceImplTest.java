@@ -1,4 +1,4 @@
 public class ActionServiceImplTest {
 
-   // тут будут тесты
+   // тут будут тесты скоро
 }
