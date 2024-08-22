@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http:
-         xmlns:xsi="http:
-         xsi:schemaLocation="http:
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
@@ -29,7 +29,7 @@
         <dependency>
             <groupId>net.bytebuddy</groupId>
             <artifactId>byte-buddy</artifactId>
-            <version>1.14.4</version> <!-- Остання стабільна версія Byte Buddy -->
+            <version>1.14.4</version>
             <scope>test</scope>
         </dependency>
 
@@ -37,7 +37,7 @@
         <dependency>
             <groupId>net.bytebuddy</groupId>
             <artifactId>byte-buddy-agent</artifactId>
-            <version>1.14.4</version> <!-- Версія повинна відповідати версії byte-buddy -->
+            <version>1.14.4</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
