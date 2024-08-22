@@ -1,7 +1,7 @@
 package service;
 
 
-public class EmailService {
+public class EmailServiceImpl implements EmailService {
 
     
     public void sendEmail(String to, String subject, String body) {

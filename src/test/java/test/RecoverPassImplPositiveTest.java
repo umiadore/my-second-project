@@ -3,29 +3,29 @@ package test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import repository.DataRepository;
-import service.EmailService;
+import service.EmailServiceImpl;
 import service.EncryptionService;
-import service.RecoverPass;
+import service.RecoverPassImpl;
 import entity.User;
 import static org.mockito.Mockito.*;
 
 
-public class RecoverPassPositiveTest {
+public class RecoverPassImplPositiveTest {
 
-    private RecoverPass recoverPass;
+    private RecoverPassImpl recoverPassImpl;
     private DataRepository dataRepository;
-    private EmailService emailService;
+    private EmailServiceImpl emailServiceImpl;
     private EncryptionService encryptionService;
 
     @BeforeEach
     public void setUp() {
         
         dataRepository = mock(DataRepository.class);
-        emailService = mock(EmailService.class);
+        emailServiceImpl = mock(EmailServiceImpl.class);
         encryptionService = mock(EncryptionService.class);
 
         
-        recoverPass = new RecoverPass(dataRepository, emailService, encryptionService);
+        recoverPassImpl = new RecoverPassImpl(dataRepository, emailServiceImpl, encryptionService);
     }
 
     @Test
@@ -40,7 +40,7 @@ public class RecoverPassPositiveTest {
         when(encryptionService.encryptedPass(anyString())).thenReturn("NewEncryptedPass");
 
         
-        recoverPass.recoverPassword(username);
+        recoverPassImpl.recoverPassword(username);
 
         
         verify(dataRepository).saveUser(argThat(savedUser ->
@@ -49,6 +49,6 @@ public class RecoverPassPositiveTest {
         ));
 
         
-        verify(emailService).sendEmail(eq(username), anyString(), anyString());
+        verify(emailServiceImpl).sendEmail(eq(username), anyString(), anyString());
     }
 }

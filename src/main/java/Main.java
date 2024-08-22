@@ -1,4 +1,3 @@
-import controller.Action;
 import controller.ActionController;
 import repository.DataRepository;
 import repository.DataRepositoryImpl;
@@ -15,14 +14,14 @@ public class Main {
         EncryptionService encryptionService = new EncryptionServiceImpl(null); 
         AuthorizationService authorizationService = new AuthorizationServiceImpl(dataRepository, encryptionService); 
         RegistrationService registrationService = new RegistrationServiceImpl(dataRepository, encryptionService, dataProcessing); 
-        EmailService emailService = new EmailService(); 
-        RecoverPass recoverPassService = new RecoverPass(dataRepository, emailService, encryptionService); 
+        EmailServiceImpl emailServiceImpl = new EmailServiceImpl();
+        RecoverPassImpl recoverPassImplService = new RecoverPassImpl(dataRepository, emailServiceImpl, encryptionService);
 
         
         Scanner scanner = new Scanner(System.in);
 
         
-        ActionController actionController = new ActionController(scanner, registrationService, authorizationService, recoverPassService);
+        ActionController actionController = new ActionController(scanner, registrationService, authorizationService, recoverPassImplService);
 
         
         actionController.chooseAction();

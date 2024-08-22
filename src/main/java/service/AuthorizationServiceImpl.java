@@ -79,11 +79,5 @@ public class AuthorizationServiceImpl implements AuthorizationService {
         return true; 
     }
 
-    private boolean isPasswordStrong(String password) {
-        if (password.length() < 8) return false; 
-        if (!password.matches(".*\\d.*")) return false; 
-        if (!password.matches(".*[!@#$%^&*].*")) return false; 
-        if (!password.matches(".*[A-Z].*")) return false; 
-        return true;
-    }
+
 }
