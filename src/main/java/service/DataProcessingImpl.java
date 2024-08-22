@@ -2,13 +2,7 @@ package service;
 
 public class DataProcessingImpl implements DataProcessing {
 
-    @Override
-    public String normalizeUsername(String username) {
-        if (username == null) {
-            throw new IllegalArgumentException("Username cannot be null"); 
-        }
-        return username.trim().toLowerCase(); 
-    }
+
 
     @Override
     public boolean isValidEmail(String email) {
@@ -28,6 +22,7 @@ public class DataProcessingImpl implements DataProcessing {
 
     @Override
     public String processPassword(String password) {
-        return password.trim(); 
+
+        return password.trim();
     }
 }
