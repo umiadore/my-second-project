@@ -1,5 +1,8 @@
 package service;
 
 public interface DataProcessing {
-    void processData();
+    String normalizeUsername(String username); 
+    boolean isValidEmail(String email); 
+    boolean isValidUsername(String username); 
+    String processPassword(String password); 
 }

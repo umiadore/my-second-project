@@ -7,18 +7,24 @@ import service.*;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
+        
+        DataRepository dataRepository = new DataRepositoryImpl(); 
+        DataProcessing dataProcessing = new DataProcessingImpl(); 
+        EncryptionService encryptionService = new EncryptionServiceImpl(null); 
+        AuthorizationService authorizationService = new AuthorizationServiceImpl(dataRepository, encryptionService); 
+        RegistrationService registrationService = new RegistrationServiceImpl(dataRepository, encryptionService, dataProcessing); 
+        EmailService emailService = new EmailService(); 
+        RecoverPass recoverPassService = new RecoverPass(dataRepository, emailService, encryptionService); 
+
+        
         Scanner scanner = new Scanner(System.in);
-        DataRepository dataRepository = new DataRepositoryImpl();
-        AuthorizationService authorizationService = new AuthorizationServiceImpl(dataRepository);
 
-        EncryptionService encryptionService = new EncryptionServiceImpl( authorizationService);
-        RegistrationService registrationService = new RegistrationServiceImpl(encryptionService, dataRepository, scanner);
+        
+        ActionController actionController = new ActionController(scanner, registrationService, authorizationService, recoverPassService);
 
-        System.out.println("Log in or Sign in:");
-
-        ActionController actionController = new ActionController(scanner, registrationService, authorizationService);
+        
         actionController.chooseAction();
-
     }
 }

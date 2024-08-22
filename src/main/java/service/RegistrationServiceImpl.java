@@ -8,39 +8,43 @@ import java.util.regex.Pattern;
 
 public class RegistrationServiceImpl implements RegistrationService {
 
-    private final  EncryptionService encryptionService;
-    private final DataRepository dataRepository;
+    private final DataRepository dataRepository; 
+    private final EncryptionService encryptionService; 
+    private final DataProcessing dataProcessing; 
 
-
-    private final Scanner scanner;
-
-    public RegistrationServiceImpl(EncryptionService encryptionService, DataRepository dataRepository, Scanner scanner) {
-        this.encryptionService = encryptionService;
+    
+    public RegistrationServiceImpl(DataRepository dataRepository, EncryptionService encryptionService, DataProcessing dataProcessing) {
         this.dataRepository = dataRepository;
-        this.scanner = scanner;
+        this.encryptionService = encryptionService;
+        this.dataProcessing = dataProcessing;
     }
-
 
     @Override
-    public boolean registered(String login, String password) {
-        if (!isValidPassword(password)) {
-            return false;
+    public boolean registerUser(String username, String password) {
+        
+        String normalizedUsername = dataProcessing.normalizeUsername(username);
+
+        
+        if (!dataProcessing.isValidUsername(normalizedUsername)) {
+            System.out.println("Invalid username. Please try again."); 
+            return false; 
         }
 
-        String encryptedPass = encryptionService.encryptedPass(password);
-        User user = new User(login, encryptedPass);
-        dataRepository.saveUser(user);
-        return true;
+        
+        if (dataRepository.isUsernameTaken(normalizedUsername)) {
+            System.out.println("Username is already taken. Please choose another one."); 
+            return false; 
+        }
+
+        
+        String encryptedPassword = encryptionService.encryptedPass(password);
+
+        
+        User user = new User(normalizedUsername, encryptedPassword);
+        dataRepository.saveUser(user); 
+
+        System.out.println("Registration successful!"); 
+        return true; 
     }
-
-
-    // Для проверки пароля
-    private boolean isValidPassword(String password) {
-        return password.length() >= 8 &&
-                Pattern.compile("[0-9]").matcher(password).find() &&
-                Pattern.compile("[^a-zA-Z0-9]").matcher(password).find();
-    }
-
 }
-
 
