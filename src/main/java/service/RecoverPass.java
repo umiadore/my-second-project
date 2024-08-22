@@ -16,25 +16,25 @@ public class RecoverPass {
         this.encryptionService = encryptionService;
     }
 
-    
+
     public void recoverPassword(String username) {
-        User user = dataRepository.findUserByUsername(username); 
+        User user = dataRepository.findUserByUsername(username);
 
         if (user == null) {
-            System.out.println("User not found."); 
-            return; 
+            System.out.println("User not found.");
+            return;
         }
 
-        String newPassword = generateTemporaryPassword(); 
-        String encryptedNewPassword = encryptionService.encryptedPass(newPassword); 
+        String newPassword = generateTemporaryPassword();
+        String encryptedNewPassword = encryptionService.encryptedPass(newPassword);
 
-        user.setUsername(encryptedNewPassword); 
-        dataRepository.saveUser(user); 
+        user.setPassword(encryptedNewPassword);  
+        dataRepository.saveUser(user);
 
-        String emailBody = "Your new password is: " + newPassword; 
-        emailService.sendEmail(username, "Password Recovery", emailBody); 
+        String emailBody = "Your new password is: " + newPassword;
+        emailService.sendEmail(username, "Password Recovery", emailBody);
 
-        System.out.println("A new password has been sent to your email."); 
+        System.out.println("A new password has been sent to your email.");
     }
 
     private String generateTemporaryPassword() {

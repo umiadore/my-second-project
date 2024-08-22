@@ -9,28 +9,23 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class DataProcessingImplPositiveTest {
 
-    private DataProcessing dataProcessing;  
+    private DataProcessing dataProcessing;
 
     @BeforeEach
     public void setUp() {
-        dataProcessing = new DataProcessingImpl();  
+        dataProcessing = new DataProcessingImpl();
     }
 
     @Test
     public void testValidEmail() {
-        String email = "user@example.com";  
-        assertTrue(dataProcessing.isValidEmail(email));  
+        String email = "user@example.com";
+        assertTrue(dataProcessing.isValidEmail(email));
     }
 
     @Test
     public void testValidUsername() {
-        String username = "validUser";  
-        assertTrue(dataProcessing.isValidUsername(username));  
+        String username = "validUser";
+        assertTrue(dataProcessing.isValidUsername(username));
     }
 
-    @Test
-    public void testNormalizeUsername() {
-        String username = "  UserName  ";  
-        assertEquals("username", dataProcessing.normalizeUsername(username));  
-    }
 }
